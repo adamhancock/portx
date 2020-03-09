@@ -17,14 +17,17 @@ jobs:
         with:
           node-version: "12.x"
       - run: npm run build
+      - name: Get current time
+        uses: gerred/actions/current-time@master
+        id: current-time
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ github.ref }}-${{ steps.current-time.outputs.time }}
+          release_name: Release ${{ github.ref }}-${{ steps.current-time.outputs.time }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
