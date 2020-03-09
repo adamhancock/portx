@@ -35,7 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.format-time.outputs.replaced }}
-          release_name: Release ${{ github.ref }}-${{ steps.format-time.outputs.replaced }}
+          release_name: Release Master-${{ steps.format-time.outputs.replaced }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
