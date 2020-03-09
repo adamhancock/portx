@@ -8,7 +8,7 @@ jobs:
     # This job runs on Linux
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/clone
       - uses: actions/setup-node@v1
         with:
           node-version: "12.x"
@@ -37,4 +37,3 @@ jobs:
           asset_path: ./dist/
           asset_name: porttest-exe.exe
           asset_content_type: application/x-executable
-          tag_name: master
