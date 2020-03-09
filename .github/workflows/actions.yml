@@ -37,7 +37,7 @@ jobs:
           asset_path: ./dist/porttest-win.exe
           asset_name: porttest-win.exe
           asset_content_type: application/x-executable
-      - name: Upload Release Asset
+      - name: Upload Release Asset 2
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
