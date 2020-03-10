@@ -26,7 +26,11 @@ hosts.forEach(async host => {
   if (!isIp(host.host)) {
     const ipaddresses = await dnsResolves(host.host);
     if (ipaddresses.length == 0) {
-      console.log(chalk.red(`${env} ${host.host} does not resolve`));
+      console.log(
+        chalk.red(
+          `* FAIL - ${env} ${host.name} - ${host.host} does not resolve`
+        )
+      );
     } else {
       ipaddresses.forEach(async address => {
         console.log(
