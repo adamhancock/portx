@@ -1,4 +1,3 @@
-const dns = require("./dnsResolves");
-
-const result = dns("thisdomaindoesnsswork.com");
-console.log(result);
+const Handlebars = require('handlebars')
+const template = Handlebars.compile('Name: {{name}}')
+console.log(template({ name: 'Nils' }))

@@ -1,12 +1,11 @@
-[
-  {
+[{
     "name": "Google",
     "host": "google.co.uk",
     "port": 443
   },
   {
     "name": "Yahoo",
-    "host": "yahoo.co.uk",
+    "host": "{{env}}-yahoo.co.uk",
     "port": 443
   },
   {
