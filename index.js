@@ -1,35 +1,32 @@
-const chalk = require('chalk')
+const chalk = require("chalk");
 
-const dnsResolves = require('./dnsResolves')
-const hostCheck = require('./hostCheck')
-const isIp = require('is-ip')
+const dnsResolves = require("./dnsResolves");
+const hostCheck = require("./hostCheck");
+const isIp = require("is-ip");
 
-const fileTemplating = require('./fileTemplating')
-
-
+const fileTemplating = require("./fileTemplating");
 
 if (process.argv[2] == undefined) {
   console.log(
     chalk.red(
-      'Please pass a JSON file path as a parameter. For example porttest.exe hosts.json'
+      "Please pass a JSON file path as a parameter. For example porttest.exe hosts.json"
     )
-  )
-  process.exit()
+  );
+  process.exit();
 }
 
-const hosts = fileTemplating(process.argv)
-
+const hosts = fileTemplating(process.argv);
 
 hosts.forEach(async host => {
   if (host.env) {
-    var env = `${host.env.toUpperCase() } -`
+    var env = `${host.env.toUpperCase()} -`;
   } else {
-    var env = ""
+    var env = "";
   }
   if (!isIp(host.host)) {
-    const ipaddresses = await dnsResolves(host.host)
+    const ipaddresses = await dnsResolves(host.host);
     if (ipaddresses.length == 0) {
-      console.log(chalk.red(`${host.host} does not resolve`))
+      console.log(chalk.red(`${env} ${host.host} does not resolve`));
     } else {
       ipaddresses.forEach(async address => {
         console.log(
@@ -38,8 +35,8 @@ hosts.forEach(async host => {
             name: `${env} ${host.name} - ${host.host}`,
             port: host.port
           })
-        )
-      })
+        );
+      });
     }
   } else {
     console.log(
@@ -48,6 +45,6 @@ hosts.forEach(async host => {
         name: `${env} ${host.name} - ${host.host}`,
         port: host.port
       })
-    )
+    );
   }
-})
+});
