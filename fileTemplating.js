@@ -1,37 +1,57 @@
 // environment pass in for templating.
-const Handlebars = require('handlebars')
-const program = require('commander')
-const fs = require('fs')
-const path = require('path')
-program.option('-e, --env <List>', 'environment templating')
-program.parse(process.argv)
+const Handlebars = require("handlebars");
+const program = require("commander");
+const fs = require("fs");
+const path = require("path");
+const chalk = require("chalk");
 
-module.exports = function () {
-  if (program.env) {
-    const environments = program.env.split(',')
-    const hosts = []
-    environments.forEach(environment => {
+program
+  .option("-e, --env <String>", "environment templating")
+  .option("-f, --file <String>", "file based")
+  .option("-h, --host <String>", "host based");
+program.parse(process.argv);
 
-      const template = Handlebars.compile(
-        fs.readFileSync(path.join(process.cwd(), process.argv[2])).toString()
-      )
-      const templateResults = JSON.parse(template({
-        env: environment
-      }))
-      hosts.push(...templateResults.map((result) => {
-        return {
-          ...result,
-          env: environment
-        }
-      }))
-
-
-    });
-    return hosts
-
-  } else {
-    return JSON.parse(
-      fs.readFileSync(path.join(process.cwd(), process.argv[2]))
-    )
+module.exports = function() {
+  if (program.file == undefined && process.argv["2"] == undefined) {
+    console.log(chalk.red("No hosts specified."));
+    process.exit();
   }
-}
+
+  if (program.env) {
+    const environments = program.env.split(",");
+    const hosts = [];
+    environments.forEach(environment => {
+      const template = Handlebars.compile(
+        fs.readFileSync(path.join(process.cwd(), program.file)).toString()
+      );
+      const templateResults = JSON.parse(
+        template({
+          env: environment
+        })
+      );
+      hosts.push(
+        ...templateResults.map(result => {
+          return {
+            ...result,
+            env: environment
+          };
+        })
+      );
+    });
+    return hosts;
+  } else {
+    // command line hosts
+    if (program.host) {
+      return [
+        {
+          host: program.host.split(":")[0],
+          port: program.host.split(":")[1]
+        }
+      ];
+    } else {
+      return JSON.parse(
+        fs.readFileSync(path.join(process.cwd(), program.file))
+      );
+    }
+  }
+};

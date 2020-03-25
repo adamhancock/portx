@@ -1,4 +1,5 @@
-[{
+[
+  {
     "name": "Google",
     "host": "google.co.uk",
     "port": 443
@@ -9,7 +10,6 @@
     "port": 443
   },
   {
-    "name": "Fail",
     "host": "8.8.8.8",
     "port": 8080
   }
