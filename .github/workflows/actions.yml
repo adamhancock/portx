@@ -11,11 +11,11 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
         with:
-          node-version: "12.x"
+          node-version: '12.x'
       - run: npm install
       - uses: actions/setup-node@v1
         with:
-          node-version: "12.x"
+          node-version: '12.x'
       - run: npm run build
       - name: Get current time
         uses: gerred/actions/current-time@master
@@ -25,9 +25,9 @@ jobs:
         id: format-time
         with:
           pattern: '[:\.]+'
-          string: "${{ steps.current-time.outputs.time }}"
-          replace-with: "-"
-          flags: "g"
+          string: '${{ steps.current-time.outputs.time }}'
+          replace-with: '-'
+          flags: 'g'
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -45,8 +45,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./dist/porttest-win.exe
-          asset_name: porttest-win.exe
+          asset_path: ./dist/portx-win.exe
+          asset_name: portx-win.exe
           asset_content_type: application/x-executable
       - name: Upload Release Asset 2
         id: upload-release-asset2
@@ -55,8 +55,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./dist/porttest-linux
-          asset_name: porttest-linux
+          asset_path: ./dist/portx-linux
+          asset_name: portx-linux
           asset_content_type: application/x-executable
       - name: Upload Release Asset 3
         id: upload-release-asset3
@@ -65,6 +65,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./dist/porttest-macos
-          asset_name: porttest-macos
+          asset_path: ./dist/portx-macos
+          asset_name: portx-macos
           asset_content_type: application/x-executable
