@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "pkg src/index.js  --output dist/portx --targets node12-win-x64,node12-linux,node12-macos && ncc build src/index.js -o dist/npm && cp -f package.json dist/npm/package.json",
-    "publish": "npm "
+    "publish": "npm version minor && npm publish"
   },
   "author": "",
   "license": "ISC",
