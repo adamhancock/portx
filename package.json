@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "pkg index.js  --output dist/porttest --targets node12-win-x64,node12-linux,node12-macos && ncc build index.js -o dist"
+    "build": "pkg src/index.js  --output dist/porttest --targets node12-win-x64,node12-linux,node12-macos && ncc build src/index.js -o dist"
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +16,8 @@
     "handlebars": "^4.7.3",
     "is-ip": "^3.1.0",
     "is-port-reachable": "^3.0.0",
-    "pkg": "^4.4.4"
+    "pkg": "^4.4.4",
+    "minimist": "1.2.5"
   },
   "engines": {
     "node": ">=12.13.1",
