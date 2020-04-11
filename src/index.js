@@ -1,3 +1,5 @@
+#!/bin/node
+
 const chalk = require("chalk");
 
 const dnsResolves = require("./dnsResolves");
