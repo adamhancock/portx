@@ -11,7 +11,6 @@ const fileTemplating = require('./fileTemplating')
 const hosts = fileTemplating(process.argv)
 
 hosts.forEach(async (host) => {
-  x
   if (host.env) {
     var env = `${host.env.toUpperCase()} -`
   } else {
