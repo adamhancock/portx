@@ -42,10 +42,12 @@ module.exports = function () {
   } else {
     // command line hosts
     if (program.host) {
-      const host = program.host.split(':')[1]
+      const host = program.host.split(':')[0]
       const port = program.host.split(':')[1]
       if (port == undefined) {
-        console.log(chalk.red('No port specified.'))
+        console.log(
+          chalk.red(`No port specified. Try again with portx -h ${host}:443`)
+        )
         process.exit()
       }
 
