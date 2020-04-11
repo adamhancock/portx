@@ -20,9 +20,5 @@
     "is-port-reachable": "^3.0.0",
     "pkg": "^4.4.4",
     "minimist": "1.2.5"
-  },
-  "engines": {
-    "node": ">=8.0.0",
-    "npm": ">=6.0.0"
   }
 }
