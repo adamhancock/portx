@@ -1,16 +1,7 @@
 [
   {
-    "name": "Google",
-    "host": "google.co.uk",
-    "port": 443
-  },
-  {
     "name": "Yahoo",
-    "host": "{{env}}-yahoo.co.uk",
+    "host": "{{env}}.bbc.co.uk",
     "port": 443
-  },
-  {
-    "host": "8.8.8.8",
-    "port": 8080
   }
 ]

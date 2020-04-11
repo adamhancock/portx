@@ -17,7 +17,7 @@
     "handlebars": "^4.7.3",
     "is-ip": "^3.1.0",
     "is-port-reachable": "^3.0.0",
-    "pkg": "^4.4.4",
-    "minimist": "1.2.5"
+    "minimist": "1.2.5",
+    "pkg": "^4.4.4"
   }
 }
