@@ -1,8 +1,9 @@
 {
   "name": "portx",
-  "version": "1.0.0",
+  "version": "2.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "bin": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "pkg src/index.js  --output dist/portx --targets node12-win-x64,node12-linux,node12-macos && ncc build src/index.js -o dist -m",
@@ -21,7 +22,7 @@
     "minimist": "1.2.5"
   },
   "engines": {
-    "node": ">=12.13.1",
-    "npm": ">=6.12.1"
+    "node": ">=8.0.0",
+    "npm": ">=6.0.0"
   }
 }
