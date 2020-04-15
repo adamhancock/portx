@@ -1,17 +1,12 @@
 // environment pass in for templating.
 const Handlebars = require('handlebars')
-const program = require('commander')
 const fs = require('fs')
 const path = require('path')
 const chalk = require('chalk')
 
-program
-  .option('-e, --env <String>', 'environment templating')
-  .option('-f, --file <String>', 'file based')
-  .option('-h, --host <String>', 'host based')
-program.parse(process.argv)
 
-module.exports = function () {
+
+module.exports = function (program) {
   if (program.file == undefined && process.argv['2'] == undefined) {
     console.log(chalk.red('No hosts specified.'))
     process.exit()
@@ -51,12 +46,10 @@ module.exports = function () {
         process.exit()
       }
 
-      return [
-        {
-          host: host,
-          port: port,
-        },
-      ]
+      return [{
+        host: host,
+        port: port,
+      }, ]
     } else {
       return JSON.parse(fs.readFileSync(path.join(process.cwd(), program.file)))
     }
