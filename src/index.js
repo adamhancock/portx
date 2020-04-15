@@ -1,4 +1,4 @@
-#!/usr/bin/env node --no-warnings
+#!/usr/bin/env node
 
 const chalk = require('chalk')
 const dnsResolves = require('./dnsResolves')
