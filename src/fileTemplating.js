@@ -7,7 +7,12 @@ const chalk = require('chalk')
 
 
 module.exports = function (program) {
-  if (program.file == undefined && process.argv['2'] == undefined) {
+  if (program.version) {
+    require('./checkVersion')()
+    process.exit()
+  }
+
+  if (program.file == undefined && program.host == undefined) {
     console.log(chalk.red('No hosts specified.'))
     process.exit()
   }

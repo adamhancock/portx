@@ -8,6 +8,7 @@ module.exports = async function (host) {
       host: host.host
     })) {
     const message = `* SUCCESS - ${host.name} - ${host.host}:${host.port} is accessible.`
+
     if (host.status) {
       return await chalk.green(await httpCheck(host, message))
     } else {

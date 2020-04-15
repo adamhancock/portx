@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const chalk = require('chalk')
-
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 const dnsResolves = require('./dnsResolves')
 const hostCheck = require('./hostCheck')
 const isIp = require('is-ip')
@@ -12,8 +12,11 @@ program
   .option('-e, --env <String>', 'environment templating')
   .option('-f, --file <String>', 'file based')
   .option('-h, --host <String>', 'host based')
-  .option('-s, --status [type]', 'http status code', 'http')
+  .option('-s, --status [type]', 'http status code')
+  .option('-v, --version', 'Check version', false)
+
 program.parse(process.argv)
+
 const hosts = fileTemplating(program)
 
 hosts.forEach(async (host) => {
@@ -40,7 +43,7 @@ hosts.forEach(async (host) => {
             host: address,
             name: `${env}${host.name}${host.host}`,
             port: host.port,
-            status: program.status || false
+            status: program.status || false,
           })
         )
       })
@@ -51,7 +54,7 @@ hosts.forEach(async (host) => {
         host: host.host,
         name: `${env} ${host.name}${host.host}`,
         port: host.port,
-        status: program.status || false
+        status: program.status || false,
       })
     )
   }
