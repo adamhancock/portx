@@ -9,19 +9,29 @@ module.exports = async function (host, message) {
     protocol = host.status
   }
   let hostHeader = {
-    Host: host.name
-  };
+    Host: host.name,
+  }
+  if (protocol == 'https') {
+    process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
+  }
 
-  return await axios.get(`${protocol}://${host.host}:${host.port}`, {
-    headers: hostHeader
-  }).then((res) => {
-    return `${message} HTTP: ${res.status} ${res.statusText}`
-  }).catch((err) => {
-    if (err.response) {
-      return `${message} ` + chalk.red(`HTTP: ${err.response.status} ${err.response.statusText}`)
-    } else {
-      return `${message} ` + chalk.red(`HTTP connection error (Try with HTTP)`)
-    }
-  })
-
+  return await axios
+    .get(`${protocol}://${host.host}:${host.port}`, {
+      headers: hostHeader,
+    })
+    .then((res) => {
+      return `${message} HTTP: ${res.status} ${res.statusText}`
+    })
+    .catch((err) => {
+      if (err.response) {
+        return (
+          `${message} ` +
+          chalk.red(`HTTP: ${err.response.status} ${err.response.statusText}`)
+        )
+      } else {
+        return (
+          `${message} ` + chalk.red(`HTTP connection error (Try with HTTP)`)
+        )
+      }
+    })
 }

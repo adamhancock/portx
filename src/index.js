@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const chalk = require('chalk')
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 const dnsResolves = require('./dnsResolves')
 const hostCheck = require('./hostCheck')
 const isIp = require('is-ip')
