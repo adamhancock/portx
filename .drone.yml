@@ -3,7 +3,7 @@ type: kubernetes
 name: default
 
 steps:
-  - name: build-push
+  - name: build
     image: node:12.18.0-buster
     environment:
       API_KEY:
@@ -11,3 +11,11 @@ steps:
     commands:
       - npm install
       - npm run build
+  - name: publish
+    image: plugins/github-release
+    settings:
+      api_key:
+        from_secret: github_api
+      files: dist/*
+    when:
+      event: tag
