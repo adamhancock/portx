@@ -18,6 +18,6 @@ steps:
       files:
         - dist/portx-win.exe
         - dist/portx-linux
-        - portx-macos
+        - dist/portx-macos
     when:
       event: tag
