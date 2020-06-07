@@ -1,0 +1,13 @@
+kind: pipeline
+type: kubernetes
+name: default
+
+steps:
+  - name: build-push
+    image: node:12.18.0-buster
+    environment:
+      API_KEY:
+        from_secret: ACR_HOST
+    commands:
+      - npm install
+      - npm run build
