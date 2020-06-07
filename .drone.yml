@@ -16,6 +16,4 @@ steps:
     settings:
       api_key:
         from_secret: github_api
-      files: dist/*
-    when:
-      event: tag
+      files: ["dist/portx-win.exe", "portx-linux", "portx-macos"]
