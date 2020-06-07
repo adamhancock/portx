@@ -5,15 +5,16 @@ name: default
 steps:
   - name: build
     image: node:12.18.0-buster
-    environment:
-      API_KEY:
-        from_secret: ACR_HOST
     commands:
       - npm install
       - npm run build
+    when:
+      event: tag
   - name: publish
     image: plugins/github-release
     settings:
       api_key:
         from_secret: github_api
       files: ["dist/portx-win.exe", "portx-linux", "portx-macos"]
+    when:
+      event: tag
